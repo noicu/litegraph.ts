@@ -4,6 +4,7 @@ import { MathOperation } from "@litegraph-ts/nodes-math"
 import  "@litegraph-ts/nodes-logic";
 import "@litegraph-ts/nodes-widget";
 import "@litegraph-ts/nodes-events";
+import "@litegraph-ts/nodes-mqtt";
 
 export function demo(graph: LGraph) {
     multiConnection(graph);

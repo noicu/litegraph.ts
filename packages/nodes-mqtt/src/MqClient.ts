@@ -1,6 +1,6 @@
 import { LGraphNode, LiteGraph, SlotLayout, Vector2 } from "@litegraph-ts/core";
 
-export interface WidgetKnobProperties extends Record<string, any> {
+export interface MqClientProperties extends Record<string, any> {
     min: number,
     max: number,
     value: number,
@@ -9,7 +9,7 @@ export interface WidgetKnobProperties extends Record<string, any> {
     radius: number
 }
 
-export default class WidgetKnob extends LGraphNode {
+export default class MqClient extends LGraphNode {
     static slotLayout: SlotLayout = {
         inputs: [],
         outputs: [
@@ -17,7 +17,7 @@ export default class WidgetKnob extends LGraphNode {
         ],
     }
 
-    override properties: WidgetKnobProperties = {
+    override properties: MqClientProperties = {
         min: 0,
         max: 1,
         value: 0.5,
@@ -177,8 +177,8 @@ export default class WidgetKnob extends LGraphNode {
 }
 
 LiteGraph.registerNodeType({
-    class: WidgetKnob,
-    title: "Knob",
-    desc: "Circular controller",
-    type: "widget/knob"
+    class: MqClient,
+    title: "Mqtt Client",
+    desc: "Mqtt Client",
+    type: "mqtt/client"
 })
