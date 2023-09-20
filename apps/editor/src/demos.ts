@@ -3,6 +3,7 @@ import { ConstantNumber, Watch } from "@litegraph-ts/nodes-basic"
 import { MathOperation } from "@litegraph-ts/nodes-math"
 import  "@litegraph-ts/nodes-logic";
 import "@litegraph-ts/nodes-widget";
+import "@litegraph-ts/nodes-events";
 
 export function demo(graph: LGraph) {
     multiConnection(graph);
