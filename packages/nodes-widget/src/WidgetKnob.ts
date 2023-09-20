@@ -140,7 +140,6 @@ export default class WidgetKnob extends LGraphNode {
     }
 
     override onMouseMove(e: any) {
-        console.log(this)
         if (!this.oldmouse) {
             return;
         }
