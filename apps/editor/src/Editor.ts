@@ -236,7 +236,7 @@ export default class Editor {
             let ext = LGraphCanvas.getFileExtension(file.name);
             let reader = new FileReader();
             if (ext == "json") {
-                reader.onload = function(_event: Event) {
+                reader.onload = function (_event: Event) {
                     var data = JSON.parse(reader.result as string);
                     that.graph.configure(data);
                 };
@@ -256,7 +256,7 @@ export default class Editor {
         }
 
         var self = this;
-        setTimeout(function() {
+        setTimeout(function () {
             self.graphCanvas.resize();
         }, 100);
     };
@@ -289,7 +289,7 @@ export default class Editor {
         graphCanvas.render_shadows = false;
         graphCanvas.maxZoom = 0.25;
         this.miniwindow.graphCanvas = graphCanvas;
-        graphCanvas.onClear = function() {
+        graphCanvas.onClear = function () {
             graphCanvas.scale = 0.25;
             graphCanvas.allow_dragnodes = false;
             graphCanvas.allow_interaction = false;

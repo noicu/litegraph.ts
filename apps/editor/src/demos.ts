@@ -1,6 +1,8 @@
 import { LGraph, LiteGraph } from "@litegraph-ts/core";
 import { ConstantNumber, Watch } from "@litegraph-ts/nodes-basic"
 import { MathOperation } from "@litegraph-ts/nodes-math"
+import  "@litegraph-ts/nodes-logic";
+import "@litegraph-ts/nodes-widget";
 
 export function demo(graph: LGraph) {
     multiConnection(graph);
