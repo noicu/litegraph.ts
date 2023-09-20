@@ -4,7 +4,7 @@ import { MathOperation } from "@litegraph-ts/nodes-math"
 import  "@litegraph-ts/nodes-logic";
 import "@litegraph-ts/nodes-widget";
 import "@litegraph-ts/nodes-events";
-import "@litegraph-ts/nodes-mqtt";
+import { MqClient } from "@litegraph-ts/nodes-mqtt";
 
 export function demo(graph: LGraph) {
     multiConnection(graph);
@@ -20,10 +20,10 @@ function multiConnection(graph: LGraph) {
     // graph.add(node_console);
     // node_button.connect(0, node_console);
 
-    var node_const_A = LiteGraph.createNode(ConstantNumber);
-    node_const_A.pos = [200, 200];
+    var node_const_A = LiteGraph.createNode(MqClient);
+    node_const_A.pos = [100, 200];
     graph.add(node_const_A);
-    node_const_A.setValue(4.5);
+    // node_const_A.setValue(4.5);
 
     var node_const_B = LiteGraph.createNode(ConstantNumber);
     node_const_B.pos = [200, 300];
@@ -42,7 +42,7 @@ function multiConnection(graph: LGraph) {
     node_watch2.pos = [700, 300];
     graph.add(node_watch2);
 
-    node_const_A.connect(0, node_math, 0);
+    // node_const_A.connect(0, node_math, 0);
     node_const_B.connect(0, node_math, 1);
     node_math.connect(0, node_watch, 0);
     node_math.connect(0, node_watch2, 0);
