@@ -6,6 +6,7 @@ export interface WidgetKnobProperties extends Record<string, any> {
     value: number,
     color: string,
     precision: number
+    radius: number
 }
 
 export default class WidgetKnob extends LGraphNode {
@@ -21,12 +22,13 @@ export default class WidgetKnob extends LGraphNode {
         max: 1,
         value: 0.5,
         color: "#7AF",
-        precision: 2
+        precision: 2,
+        radius: 50
     }
 
     value: number = -1;
-
-    override size: Vector2 = [64, 84];
+    oldmouse: Vector2 = null;
+    center: Vector2 = null;
 
     override onDrawForeground(ctx: CanvasRenderingContext2D) {
         if (this.flags.collapsed) {
@@ -39,11 +41,15 @@ export default class WidgetKnob extends LGraphNode {
                 (this.properties.max - this.properties.min);
         }
 
-        var center_x = this.size[0] * 0.5;
-        var center_y = this.size[1] * 0.5;
-        var radius = Math.min(this.size[0], this.size[1]) * 0.5 - 5;
-        var w = Math.floor(radius * 0.05);
+        this.size[0] = this.size[1] = this.properties.radius * 2 + 20;
 
+        var center_x =  this.size[0] * 0.5;
+        var center_y = this.size[1] * 0.5 + 10;
+
+        var w = Math.floor(this.properties.radius * 0.05);
+
+
+        
         ctx.globalAlpha = 1;
         ctx.save();
         ctx.translate(center_x, center_y);
@@ -53,7 +59,7 @@ export default class WidgetKnob extends LGraphNode {
         ctx.fillStyle = "rgba(0,0,0,0.5)";
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.arc(0, 0, radius, 0, Math.PI * 1.5);
+        ctx.arc(0, 0, this.properties.radius, 0, Math.PI * 1.5);
         ctx.fill();
 
         //value
@@ -65,7 +71,7 @@ export default class WidgetKnob extends LGraphNode {
         ctx.arc(
             0,
             0,
-            radius - 4,
+            this.properties.radius - 4,
             0,
             Math.PI * 1.5 * Math.max(0.01, this.value)
         );
@@ -79,7 +85,7 @@ export default class WidgetKnob extends LGraphNode {
         //inner
         ctx.fillStyle = "black";
         ctx.beginPath();
-        ctx.arc(center_x, center_y, radius * 0.75, 0, Math.PI * 2, true);
+        ctx.arc(center_x, center_y, this.properties.radius * 0.75, 0, Math.PI * 2, true);
         ctx.fill();
 
         //miniball
@@ -87,9 +93,9 @@ export default class WidgetKnob extends LGraphNode {
         ctx.beginPath();
         var angle = this.value * Math.PI * 1.5 + Math.PI * 0.75;
         ctx.arc(
-            center_x + Math.cos(angle) * radius * 0.65,
-            center_y + Math.sin(angle) * radius * 0.65,
-            radius * 0.05,
+            center_x + Math.cos(angle) * this.properties.radius * 0.65,
+            center_y + Math.sin(angle) * this.properties.radius * 0.65,
+            this.properties.radius * 0.05,
             0,
             Math.PI * 2,
             true
@@ -98,12 +104,12 @@ export default class WidgetKnob extends LGraphNode {
 
         //text
         ctx.fillStyle = this.mouseOver ? "white" : "#AAA";
-        ctx.font = Math.floor(radius * 0.5) + "px Arial";
+        ctx.font = Math.floor(this.properties.radius * 0.5) + "px Arial";
         ctx.textAlign = "center";
         ctx.fillText(
             this.properties.value.toFixed(this.properties.precision),
             center_x,
-            center_y + radius * 0.15
+            center_y + this.properties.radius * 0.15
         );
     }
 
@@ -116,19 +122,15 @@ export default class WidgetKnob extends LGraphNode {
         ]);
     };
 
-    oldmouse: Vector2 = null;
-    center: Vector2 = null;
-    radius: number = 0;
-
     override onMouseDown(e: any) {
         this.center = [this.size[0] * 0.5, this.size[1] * 0.5 + 20];
-        this.radius = this.size[0] * 0.5;
+        // this.radius = this.size[0] * 0.5;
         if (
             e.canvasY - this.pos[1] < 20 ||
             LiteGraph.distance(
                 [e.canvasX, e.canvasY],
                 [this.pos[0] + this.center[0], this.pos[1] + this.center[1]]
-            ) > this.radius
+            ) > this.properties.radius
         ) {
             return false;
         }
@@ -138,6 +140,7 @@ export default class WidgetKnob extends LGraphNode {
     }
 
     override onMouseMove(e: any) {
+        console.log(this)
         if (!this.oldmouse) {
             return;
         }
