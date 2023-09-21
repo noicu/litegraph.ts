@@ -5,9 +5,10 @@ import type {
   IClientSubscribeOptions,
   MqttClient,
 } from 'mqtt';
-import { connect } from 'mqtt';
 
-interface IClientManagerItem {
+import { connect } from 'mqtt/dist/mqtt';
+
+export interface IClientManagerItem {
   url: string;
   connected: boolean;
   sub: (

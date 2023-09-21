@@ -91,3 +91,32 @@ export function isValidLitegraphType(type: any): type is SlotType {
         || type === BuiltInSlotType.DEFAULT
         || typeof type === "string"
 }
+
+export function isString(value: any): value is string {
+    return typeof value === "string"
+}
+
+export function isNumber(value: any): value is number {
+    return typeof value === "number"
+}
+
+export function isBoolean(value: any): value is boolean {
+    return typeof value === "boolean"
+}
+
+export function isObject(value: any): value is object {
+    return typeof value === "object"
+}
+
+export function isArray(value: any): value is any[] {
+    return Array.isArray(value)
+}
+
+export function isJson(value: any): boolean {
+    try {
+        JSON.parse(value)
+    } catch (e) {
+        return false
+    }
+    return true
+}

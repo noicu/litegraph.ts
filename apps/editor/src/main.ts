@@ -193,4 +193,4 @@ function enableWebGL() {
     // }
 }
 
-demo(editor.graph);
+demo(editor);

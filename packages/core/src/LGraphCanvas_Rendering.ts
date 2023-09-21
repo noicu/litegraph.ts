@@ -2041,7 +2041,7 @@ export default class LGraphCanvas_Rendering {
         ctx.globalAlpha = 1;
     }
 
-    /** draws the widgets stored inside a node */
+    /** 绘制存储在节点内的小部件 */
     drawNodeWidgets(
         this: LGraphCanvas,
         node: LGraphNode,

@@ -1,107 +1,60 @@
 import { INumberWidget, LGraphNode, LiteGraph, OptionalSlots, PropertyLayout, SlotLayout, Vector2 } from "@litegraph-ts/core"
+import { IClientManagerItem, useMqtt } from "./mqtt";
 
 export interface MqClientProperties extends Record<string, any> {
-    index: number
+    brokerUrl: string
+    clientId: string
 }
 
 export default class MqClient extends LGraphNode {
     override properties: MqClientProperties = {
-        index: 0
+        brokerUrl: 'ws://39.98.177.207:8083/mqtt',
+        clientId: 'client-' + Math.random().toString(36).substr(2, 5),
+        username: '',
+        password: '',
     }
 
     static slotLayout: SlotLayout = {
         inputs: [
-            { name: "arr", type: "array" },
-            { name: "value", type: "" }
+            { name: "option", type: "object" },
         ],
         outputs: [
-            { name: "arr", type: "object" }
+            { name: "client", type: "client" }
         ]
     }
-
-    // static propertyLayout: PropertyLayout = [
-    //     { name: "index", defaultValue: 0 },
-    //     { name: "index", defaultValue: 0 },
-    // ]
 
     static optionalSlots: OptionalSlots = {
     }
 
-    widget: INumberWidget;
+    client: IClientManagerItem | null = null
 
     constructor(title?: string) {
         super(title)
-        this.addWidget(
-            "text",
-            "i",
-            this.properties.index,
-            "index",
-            { precision: 0, step: 10, min: 0 }
-        );
-        this.addWidget(
-            "combo",
-            "Combo",
-            "red",
-            () => { },
-            {
-                values: ["red", "green", "blue"]
-            }
-        );
-        this.addWidget(
-            "combo",
-            "Combo",
-            1,
-            () => { },
-            {
-                values: {
-                    "title1": 1, "title2": 2
-                }
-            }
-        );
-        this.addWidget(
-            "slider",
-            "Slider",
-            0.5,
-            () => { },
-            { precision: 0, step: 10, min: 0 }
-        );
-        this.addWidget(
-            "toggle",
-            "Toggle",
-            0.5,
-            () => { },
-            { precision: 0, step: 10, min: 0 }
-        );
-        this.addWidget(
-            "button",
-            "Button",
-            0.5,
-            () => { },
-            { precision: 0, step: 10, min: 0 }
-        );
 
-        this.widget = this.addWidget("number", "i", this.properties.index, "index", { precision: 0, step: 10, min: 0 });
-        this.widgets_up = true;
+        var option = this.getInputData(0);
+
+        if (option) {
+            this.properties.brokerUrl = option.brokerUrl || this.properties.brokerUrl;
+            this.properties.clientId = option.clientId || this.properties.clientId;
+            this.properties.username = option.username || this.properties.username;
+            this.properties.password = option.password || this.properties.password;
+        }
+
+        if(this.properties.brokerUrl)
+           this.client = useMqtt(this.properties.brokerUrl, {
+                clientId: this.properties.clientId || undefined,
+                username: this.properties.username || undefined,
+                password: this.properties.password || undefined,
+            })
     }
 
     override onExecute() {
-        var arr = this.getInputData(0);
-        if (!arr)
-            return;
-        var v = this.getInputData(1);
-        if (v === undefined)
-            return;
-
-        const index = Math.floor(this.properties.index)
-        if (index >= 0 && index < arr.length) {
-            this.boxcolor = "#AEA";
-            arr[index] = v;
+        if(this.client?.connected){
+            this.boxcolor = "#AFA";
+        } else {
+            this.boxcolor = "#F00";
         }
-        else {
-            this.boxcolor = "red";
-        }
-
-        this.setOutputData(0, arr);
+        this.setOutputData(0, this.client);
     }
 }
 

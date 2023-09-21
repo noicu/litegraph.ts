@@ -2,6 +2,7 @@ import { BuiltInSlotShape, ITextWidget, IWidget, LGraphNode, LiteGraph, Optional
 import Watch from "./Watch"
 
 export interface ConstantJSONProperties extends Record<string, any> {
+    json: string,
     value: string,
     type: string,
 }
