@@ -120,3 +120,12 @@ export function isJson(value: any): boolean {
     }
     return true
 }
+
+export function hasCircularReference(obj: any): boolean {
+    try {
+        JSON.stringify(obj);
+        return false;
+    } catch (e) {
+        return true;
+    }
+}

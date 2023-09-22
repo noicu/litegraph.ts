@@ -68,7 +68,7 @@ export default class CustomWidget extends LGraphNode {
       if(isNumber(this.getInputData(i)))
         _data[input.name] = Number(this.getInputData(i).toFixed(2))
     })
-    console.log("execute", _data)
+    // console.log("execute", _data)
     this.setOutputData(0, _data)
   };
 }

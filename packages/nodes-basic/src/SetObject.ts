@@ -1,7 +1,7 @@
 import { LGraphNode, LiteGraph, OptionalSlots, PropertyLayout, SlotLayout, Vector2 } from "@litegraph-ts/core"
 
 export interface SetObjectProperties extends Record<string, any> {
-    property: string
+    property: number | string
 }
 
 export default class SetObject extends LGraphNode {
@@ -12,7 +12,7 @@ export default class SetObject extends LGraphNode {
     static slotLayout: SlotLayout = {
         inputs: [
           { name: "obj", type: "object" },
-          { name: "value", type: "string" },
+          { name: "value", type: "number,string" },
         ],
         outputs: [
             { name: "obj", type: "object" }
