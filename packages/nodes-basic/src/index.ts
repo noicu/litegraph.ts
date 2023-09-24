@@ -17,3 +17,4 @@ export { default as ObjectKeys } from "./ObjectKeys";
 export { default as SetObject } from "./SetObject";
 export { default as MergeObjects } from "./MergeObjects";
 export { default as ObjectElement } from "./ObjectElement";
+export { default as NodeScript } from "./NodeScript";

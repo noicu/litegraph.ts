@@ -59,7 +59,7 @@ export default class LiteGraph {
     static catch_exceptions: boolean = true;
     static throw_errors: boolean = true;
     /** if set to true some nodes like Formula would be allowed to evaluate code that comes from unsafe sources (like node configuration), which could lead to exploits */
-    static allow_scripts: boolean = false;
+    static allow_scripts: boolean = true;
     /** node types by string */
     static registered_node_types: Record<string, LGraphNodeConstructor> = {};
     /** used for dropping files in the canvas */
