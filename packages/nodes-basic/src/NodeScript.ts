@@ -51,8 +51,8 @@ export default class NodeScript extends LGraphNode {
 
   compileCode(code) {
     this._func = null;
-    if (code.length > 256) {
-      console.warn("Script too long, max 256 chars");
+    if (code.length > 1024) {
+      console.warn("Script too long, max 1024 chars");
     } else {
       var code_low = code.toLowerCase();
       var forbidden_words = [
@@ -79,9 +79,12 @@ export default class NodeScript extends LGraphNode {
   };
 
   override onExecute() {
+    // console.log("executing script", this._func);
     if (!this._func) {
       return;
     }
+
+
 
     try {
       this.setOutputData(0, this._func(...this.inputs.map((e,i)=> this.getInputData(i)), this.data, this));

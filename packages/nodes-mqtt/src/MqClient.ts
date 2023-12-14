@@ -8,7 +8,7 @@ export interface MqClientProperties extends Record<string, any> {
 
 export default class MqClient extends LGraphNode {
     override properties: MqClientProperties = {
-        brokerUrl: 'ws://39.98.177.207:8083/mqtt',
+        brokerUrl: 'ws://192.168.1.86:8083/mqtt',
         clientId: 'client-' + Math.random().toString(36).substr(2, 5),
         username: '',
         password: '',

@@ -50,11 +50,13 @@ export default class MqPublish extends LGraphNode {
   }
 
   override onAction(action: any, param: any, options: { action_call?: string }) {
+
     // console.log("[LogEvent] Event received:", action, param, options);
 
     if(!this.client || !this.topic) return;
 
     var msg = this.getInputData(3);
+    // console.log("[LogEvent] Event received:", msg);
 
     if(msg && typeof msg === 'object')
       this.client.publish(this.topic, JSON.stringify(msg || {}));
