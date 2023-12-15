@@ -6,8 +6,6 @@ temp/*
 coverage/
 
 # Editors
-/.vscode/*
-!/.vscode/extensions.json
 *.bak
 .project
 .turbo/
