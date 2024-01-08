@@ -1532,7 +1532,7 @@ export default class LGraphNode {
         return o;
     }
 
-    /** computes the size of a node according to its inputs and output slots */
+    /** 根据节点的输入和输出槽计算节点的大小 */
     computeSize(out: Vector2 = [0, 0]): Vector2 {
         const overrideSize = getStaticPropertyOnInstance<Vector2>(this, "overrideSize");
         if (overrideSize) {
@@ -1597,7 +1597,7 @@ export default class LGraphNode {
             widgets_height += 8;
         }
 
-        //compute height using widgets height
+        // 使用小部件高度计算高度
         if (this.widgets_up)
             size[1] = Math.max(size[1], widgets_height);
         else if (this.widgets_start_y != null)

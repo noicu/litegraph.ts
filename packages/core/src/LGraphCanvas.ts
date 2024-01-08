@@ -104,7 +104,7 @@ export type ClipboardInfo = {
     nodeCloneData: Record<NodeID, ClipboardClonedNodeInfo>,
 
     // indexInNodesArray, slotNumber, indexInNodesArray, slotNumber
-    links: [number, number, number, number][]
+    links: [NodeID, number, number, number][]
 }
 
 /**

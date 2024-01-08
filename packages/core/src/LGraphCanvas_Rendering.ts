@@ -1476,7 +1476,7 @@ export default class LGraphCanvas_Rendering {
             }
         }
 
-        //render selection marker
+        // 渲染选择标记
         if (selected) {
             if (node.onBounding) {
                 node.onBounding(area);
@@ -1540,7 +1540,7 @@ export default class LGraphCanvas_Rendering {
     private static tempA: Vector2 = [0, 0]
     private static tempB: Vector2 = [0, 0]
 
-    /** draws every connection visible in the canvas */
+    /** 绘制画布中可见的每个连接 */
     drawConnections(this: LGraphCanvas, ctx: CanvasRenderingContext2D): void {
         var now = LiteGraph.getTime();
         var visible_area = this.visible_area;

@@ -66,5 +66,6 @@
     "json",
     "jsonc",
     "yaml"
-  ]
+  ],
+  "commentTranslate.multiLineMerge": false
 }

@@ -1,4 +1,5 @@
 export interface IPropertyInfo {
+    name?: string;
     type?: string;
     values?: any | any[];
     label?: string;
