@@ -162,7 +162,7 @@ export default class LGraphCanvas
 
     link_type_colors: Record<string, string> = {};
 
-    static gradients: object;
+    static gradients: object = {}; // 渐变缓存
     static search_limit: number;
 
     static getFileExtension(url: string): string {
@@ -411,8 +411,8 @@ export default class LGraphCanvas
     set_canvas_dirty_on_mouse_event: boolean = true;
     show_info: boolean = true;
     title_text_font: string;
-    /** set to true to render title bar with gradients */
-    use_gradients: boolean = false;
+    /** 设置为 true 以呈现带有渐变的标题栏 */
+    use_gradients: boolean = true;
     visible_area: DragAndScale["visible_area"];
     visible_links: LLink[] = [];
     visible_nodes: LGraphNode[];

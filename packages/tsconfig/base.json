@@ -1,20 +1,20 @@
 {
-  "compilerOptions":
-  {
-    "sourceMap": true,
-    "target": "es2020",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "lib": [
-      "es2020", "DOM"
+      "es2020",
+      "DOM"
     ],
     "module": "es2020",
-    "outDir": "./build",
     "moduleResolution": "node",
+    "noUnusedParameters": false,
+    "outDir": "./build",
+    "preserveWatchOutput": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
     "strict": false,
     "strictNullChecks": false,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedParameters": false,
-    "preserveWatchOutput": true
+    "target": "es2020"
   }
 }

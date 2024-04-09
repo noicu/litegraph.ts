@@ -12,7 +12,7 @@ export default class ConstantObject extends LGraphNode {
     static slotLayout: SlotLayout = {
         inputs: [],
         outputs: [
-            { name: "obj", type: "object" }
+            { name: "obj", type: "object" },
         ]
     }
 

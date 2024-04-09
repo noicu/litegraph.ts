@@ -1,10 +1,10 @@
 import { LGraph, LiteGraph } from "@litegraph-ts/core";
 import { ConstantNumber, Watch, ConstantString, ConstantJSON } from "@litegraph-ts/nodes-basic"
-import { MathOperation } from "@litegraph-ts/nodes-math"
+// import { MathOperation } from "@litegraph-ts/nodes-math"
 import "@litegraph-ts/nodes-logic";
-import "@litegraph-ts/nodes-widget";
+// import "@litegraph-ts/nodes-widget";
 import { TimerEvent } from "@litegraph-ts/nodes-events";
-import { MqClient, MqPublish, MqSubscribe } from "@litegraph-ts/nodes-mqtt";
+// import { MqClient, MqPublish, MqSubscribe } from "@litegraph-ts/nodes-mqtt";
 import Editor from "./Editor";
 
 export function demo(editor: Editor) {
@@ -27,32 +27,32 @@ function multiConnection(graph: LGraph) {
     // graph.add(node_console);
     // node_button.connect(0, node_console);
 
-    var node_timer = LiteGraph.createNode(TimerEvent);
-    node_timer.pos = [100, 100];
-    graph.add(node_timer);
+    // var node_timer = LiteGraph.createNode(TimerEvent);
+    // node_timer.pos = [100, 100];
+    // graph.add(node_timer);
 
-    var client = LiteGraph.createNode(MqClient);
-    client.pos = [100, 240];
-    graph.add(client);
+    // var client = LiteGraph.createNode(MqClient);
+    // client.pos = [100, 240];
+    // graph.add(client);
 
-    var topic = LiteGraph.createNode(ConstantString);
-    topic.pos = [100, 340];
-    topic.setValue("test");
-    graph.add(topic);
+    // var topic = LiteGraph.createNode(ConstantString);
+    // topic.pos = [100, 340];
+    // topic.setValue("test");
+    // graph.add(topic);
 
-    var publish = LiteGraph.createNode(MqPublish);
-    publish.pos = [400, 200];
-    graph.add(publish);
-    // node_const_A.setValue(4.5);
+    // var publish = LiteGraph.createNode(MqPublish);
+    // publish.pos = [400, 200];
+    // graph.add(publish);
+    // // node_const_A.setValue(4.5);
 
-    var subscribe = LiteGraph.createNode(MqSubscribe);
-    subscribe.pos = [400, 500];
-    graph.add(subscribe);
+    // var subscribe = LiteGraph.createNode(MqSubscribe);
+    // subscribe.pos = [400, 500];
+    // graph.add(subscribe);
 
-    var msg = LiteGraph.createNode(ConstantJSON);
-    msg.pos = [100, 500];
-    msg.setValue({ "test": 1 })
-    graph.add(msg);
+    // var msg = LiteGraph.createNode(ConstantJSON);
+    // msg.pos = [100, 500];
+    // msg.setValue({ "test": 1 })
+    // graph.add(msg);
 
     // var node_const_B = LiteGraph.createNode(ConstantNumber);
     // node_const_B.pos = [200, 300];
@@ -71,12 +71,12 @@ function multiConnection(graph: LGraph) {
     // node_watch2.pos = [700, 300];
     // graph.add(node_watch2);
 
-    node_timer.connect(0, client, 0);
-    client.connect(0, publish, 1);
-    topic.connect(0, publish, 2);
-    msg.connect(0, publish, 3);
-    client.connect(0, subscribe, 0);
-    topic.connect(0, subscribe, 1);
+    // node_timer.connect(0, client, 0);
+    // client.connect(0, publish, 1);
+    // topic.connect(0, publish, 2);
+    // msg.connect(0, publish, 3);
+    // client.connect(0, subscribe, 0);
+    // topic.connect(0, subscribe, 1);
     // node_const_B.connect(0, node_math, 1);
     // node_math.connect(0, node_watch, 0);
     // node_math.connect(0, node_watch2, 0);

@@ -7,8 +7,6 @@ export default defineConfig({
         lib: {
             entry: resolve(__dirname, "src/index.ts"),
             formats: ["es", "umd"],
-            name: 'nodes-basic',
-            fileName: (format) => `nodes-basic.${format}.js`
         },
     }
 });

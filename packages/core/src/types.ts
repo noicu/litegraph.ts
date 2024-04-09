@@ -51,7 +51,7 @@ export const SLOT_SHAPE_NAMES = ["default", "box", "round", "circle", "card", "a
 
 export enum LConnectionKind {
     INPUT,
-    OUTPUT
+    OUTPUT,
 }
 
 export enum LinkRenderMode {
@@ -69,9 +69,9 @@ export enum TitleMode {
 }
 
 export enum BuiltInSlotType {
-    // The string names of the two event types are "_event_" for filtering purposes.
-    EVENT = -2, //for outputs
-    ACTION = -1, //for inputs
+    // 两种事件类型的字符串名称为“_event_”，以便进行筛选。
+    EVENT = -2, //用于输出
+    ACTION = -1, //用于输入
 
     DEFAULT = 0
 }

@@ -1,8 +1,8 @@
 {
-    "extends": "./base.json",
     "compilerOptions": {
-        "strict": true,
+        "incremental": true,
         "noEmit": true,
-        "incremental": true
-    }
+        "strict": true
+    },
+    "extends": "./base.json"
 }

@@ -18,21 +18,23 @@ export default class LiteGraph {
 
     static CANVAS_GRID_SIZE: number = 10;
 
-    static NODE_TITLE_HEIGHT: number = 20;
-    static NODE_TITLE_TEXT_Y: number = 15;
+    static NODE_TITLE_HEIGHT: number = 26;
+    static NODE_TITLE_TEXT_Y: number = 18;
     static NODE_SLOT_HEIGHT: number = 20;
     static NODE_WIDGET_HEIGHT: number = 20;
     static NODE_WIDTH: number = 140;
     static NODE_MIN_WIDTH: number = 50;
     static NODE_COLLAPSED_RADIUS: number = 10;
     static NODE_COLLAPSED_WIDTH: number = 80;
-    static NODE_TITLE_COLOR: string = "#999";
+    static NODE_TITLE_COLOR: string = "#C1C1C1";
     static NODE_SELECTED_TITLE_COLOR: string = "#FFF";
     static NODE_TEXT_SIZE: number = 14;
     static NODE_TEXT_COLOR: string = "#AAA";
     static NODE_SUBTEXT_SIZE: number = 12;
-    static NODE_DEFAULT_COLOR: string = "#333";
-    static NODE_DEFAULT_BGCOLOR: string = "#353535";
+    /** 节点默认颜色 */
+    static NODE_DEFAULT_COLOR: string = "#134442";
+    /** 默认节点背景色 */
+    static NODE_DEFAULT_BGCOLOR: string = "#171717";
     static NODE_DEFAULT_BOXCOLOR: string = "#666";
     static NODE_DEFAULT_SHAPE: string = "box";
     static NODE_BOX_OUTLINE_COLOR: string = "#FFF";
@@ -169,6 +171,10 @@ export default class LiteGraph {
 
         if (!config.title) {
             config.title = classname;
+        }
+
+        if(config.title_cn){
+            config.title = config.title_cn;
         }
 
         const prev = LiteGraph.registered_node_types[type];
@@ -361,10 +367,10 @@ export default class LiteGraph {
     // }
 
     /**
-     * Create a node of a given type with a name. The node is not attached to any graph yet.
-     * @param type full name of the node class. p.e. "math/sin"
-     * @param name a name to distinguish from other nodes
-     * @param options to set options
+     * 使用名称创建给定类型的节点。该节点尚未附加到任何图形。
+     * @param 键入节点类的全名。 p.e. “math/sin”
+     * @param 命名一个名称以区别于其他节点
+     * @param 选项以设置选项
      */
     static createNode<T extends LGraphNode>(type: string | LGraphNodeConstructorFactory<T>, title?: string, options: LiteGraphCreateNodeOptions = {}): T {
         let regConfig: LGraphNodeConstructor | null = null;
@@ -452,7 +458,7 @@ export default class LiteGraph {
         const slotLayout = getStaticProperty<SlotLayout>(regConfig.class, "slotLayout")
         if (slotLayout) {
             if (LiteGraph.debug)
-                console.debug("Found slot layout!", slotLayout);
+                console.debug("找到插槽布局!", slotLayout);
             if (slotLayout.inputs) {
                 for (const item of slotLayout.inputs) {
                     const { name, type, options } = item;

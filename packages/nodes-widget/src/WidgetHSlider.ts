@@ -15,12 +15,13 @@ export default class WidgetHSlider extends LGraphNode {
     ],
   }
 
-  value: number = -1;
+  value: number = 0;
 
   constructor(title?: string) {
     super(title)
 
     this.size = [160, 26];
+    this.value = this.properties.value;
   }
 
   override properties: WidgetHSliderProperties = {

@@ -1,0 +1,41 @@
+{
+	"folders": [
+		{
+			"path": "packages/core"
+		},
+		{
+			"path": "packages/nodes-basic"
+		},
+		{
+			"path": "packages/nodes-events"
+		},
+		{
+			"path": "packages/nodes-logic"
+		},
+		{
+			"path": "packages/nodes-math"
+		},
+		{
+			"path": "packages/nodes-mqtt"
+		},
+		{
+			"path": "packages/nodes-strings"
+		},
+		{
+			"path": "packages/nodes-widget"
+		},
+		{
+			"path": "packages/tests"
+		},
+		{
+			"path": "packages/tsconfig"
+		},
+		{
+			"path": "apps/editor"
+		},
+		{
+			"path": "apps/example-minimal"
+		}
+	],
+	"settings": {}
+}

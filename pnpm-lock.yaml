@@ -28,6 +28,9 @@ importers:
       '@litegraph-ts/nodes-mqtt':
         specifier: workspace:*
         version: link:../../packages/nodes-mqtt
+      '@litegraph-ts/nodes-test':
+        specifier: workspace:*
+        version: link:../../packages/nodes-test
       '@litegraph-ts/nodes-widget':
         specifier: workspace:*
         version: link:../../packages/nodes-widget
@@ -36,7 +39,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
     devDependencies:
       '@litegraph-ts/tsconfig':
         specifier: workspace:*
@@ -58,7 +61,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
     devDependencies:
       '@litegraph-ts/tsconfig':
         specifier: workspace:*
@@ -105,7 +108,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
       vite-plugin-checker:
         specifier: ^0.5.6
         version: 0.5.6(eslint@8.55.0)(typescript@5.0.3)(vite@4.2.1)
@@ -133,7 +136,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/nodes-events:
     dependencies:
@@ -158,7 +161,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/nodes-logic:
     dependencies:
@@ -183,7 +186,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/nodes-math:
     dependencies:
@@ -208,7 +211,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/nodes-mqtt:
     dependencies:
@@ -236,7 +239,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/nodes-strings:
     dependencies:
@@ -261,7 +264,32 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
+
+  packages/nodes-test:
+    dependencies:
+      '@litegraph-ts/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@antfu/eslint-config':
+        specifier: ^2.4.5
+        version: 2.4.5(@vue/compiler-sfc@3.3.11)(eslint-plugin-format@0.1.0)(eslint@8.55.0)(typescript@5.0.3)(vitest@0.31.0)
+      '@litegraph-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      eslint:
+        specifier: ^8.55.0
+        version: 8.55.0
+      eslint-plugin-format:
+        specifier: ^0.1.0
+        version: 0.1.0(eslint@8.55.0)
+      typescript:
+        specifier: ^5.0.3
+        version: 5.0.3
+      vite:
+        specifier: ^4.2.1
+        version: 4.2.1
 
   packages/nodes-widget:
     dependencies:
@@ -286,7 +314,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/tests:
     dependencies:
@@ -317,7 +345,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
+        version: 4.2.1
 
   packages/tsconfig: {}
 
@@ -5202,7 +5230,7 @@ packages:
       strip-ansi: 6.0.1
       tiny-invariant: 1.3.1
       typescript: 5.0.3
-      vite: 4.2.1(@types/node@18.15.11)
+      vite: 4.2.1
       vscode-languageclient: 7.0.0
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.8
@@ -5225,12 +5253,44 @@ packages:
       kolorist: 1.7.0
       magic-string: 0.29.0
       ts-morph: 17.0.1
-      vite: 4.2.1(@types/node@18.15.11)
+      vite: 4.2.1
     transitivePeerDependencies:
       - '@types/node'
       - rollup
       - supports-color
     dev: false
+
+  /vite@4.2.1:
+    resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.17.15
+      postcss: 8.4.21
+      resolve: 1.22.2
+      rollup: 3.20.2
+    optionalDependencies:
+      fsevents: 2.3.2
 
   /vite@4.2.1(@types/node@18.15.11):
     resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
@@ -5259,8 +5319,8 @@ packages:
     dependencies:
       '@types/node': 18.15.11
       esbuild: 0.17.15
-      postcss: 8.4.21
-      resolve: 1.22.2
+      postcss: 8.4.32
+      resolve: 1.22.8
       rollup: 3.20.2
     optionalDependencies:
       fsevents: 2.3.2

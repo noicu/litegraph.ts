@@ -79,7 +79,7 @@ export default class LGraphCanvas_Events {
                 return;
         }
 
-        //left button mouse / single finger
+        // 鼠标左键/单指
         if (e.which == 1 && !this.pointer_is_double) {
             if (e.ctrlKey && this.allow_interaction && !this.read_only) {
                 this.dragging_rectangle = new Float32Array(4);

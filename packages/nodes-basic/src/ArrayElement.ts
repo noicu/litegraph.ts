@@ -49,6 +49,7 @@ export default class ArrayElement extends LGraphNode {
 LiteGraph.registerNodeType({
     class: ArrayElement,
     title: "Array[i]",
+    title_cn: "数组[索引]",
     desc: "Returns an element from an array",
     type: "basic/array[]"
 })

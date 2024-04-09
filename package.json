@@ -5,7 +5,6 @@
     "apps/*"
   ],
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build"
+    "dev": "cd ./apps/editor && npm run dev"
   }
 }

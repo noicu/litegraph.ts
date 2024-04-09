@@ -1,4 +1,8 @@
 import { LGraph, LGraphStatus, LGraphCanvas } from "@litegraph-ts/core"
+import "@litegraph-ts/nodes-basic";
+import "@litegraph-ts/nodes-logic";
+import "@litegraph-ts/nodes-events";
+
 
 export type EditorOptions = {
     skipLiveMode?: boolean;
