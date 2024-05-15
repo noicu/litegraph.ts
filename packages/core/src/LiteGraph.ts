@@ -54,6 +54,8 @@ export default class LiteGraph {
     static MAX_NUMBER_OF_NODES: number = 1000; //avoid infinite loops
     static DEFAULT_POSITION: Vector2 = [100, 100]; //default node position
 
+    static CANVAS_FOR_HI_DPI_RATIO:number = window.devicePixelRatio;
+
     static proxy: any = null; //used to redirect calls
     static node_images_path: string = "";
 

@@ -829,7 +829,7 @@ export default class LGraphCanvas
     }
 
     adjustCanvasForHiDPI(ratio?: number) {
-        ratio ||= window.devicePixelRatio;
+        ratio ||= LiteGraph.CANVAS_FOR_HI_DPI_RATIO;
         if (ratio == 1 || !this.canvas.parentNode) { return }
         const rect = (this.canvas.parentNode as Element).getBoundingClientRect();
         const { width, height } = rect;

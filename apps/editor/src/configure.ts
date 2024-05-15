@@ -35,4 +35,6 @@ export default function(isMobile: boolean) {
 
     //enable scripting
     LiteGraph.allow_scripts = true;
+
+    LiteGraph.CANVAS_FOR_HI_DPI_RATIO = 1;
 }
