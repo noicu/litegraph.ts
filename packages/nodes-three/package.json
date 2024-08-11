@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@litegraph-ts/core": "workspace:*"
+  },
+  "description": "",
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.4.5",
+    "@litegraph-ts/tsconfig": "workspace:*",
+    "eslint": "^8.55.0",
+    "eslint-plugin-format": "^0.1.0",
+    "typescript": "^5.0.3",
+    "vite": "^4.2.1"
+  },
+  "main": "./src/index.ts",
+  "name": "@litegraph-ts/nodes-three",
+  "private": false,
+  "scripts": {
+    "build": "vite build"
+  },
+  "types": "./src/index.ts",
+  "version": "0.0.1"
+}
