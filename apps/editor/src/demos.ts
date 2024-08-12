@@ -8,6 +8,7 @@ import "@litegraph-ts/nodes-events";
 import "@litegraph-ts/nodes-mqtt";
 import "@litegraph-ts/nodes-strings";
 import "@litegraph-ts/nodes-test";
+import "@litegraph-ts/nodes-interface";
 import { UpdateEvent } from "@litegraph-ts/nodes-three";
 // import "@litegraph-ts/nodes-widget";
 import { TimerEvent } from "@litegraph-ts/nodes-events";
