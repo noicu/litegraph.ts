@@ -86,14 +86,14 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1
+        version: 4.2.1(@types/node@18.15.11)
     devDependencies:
       '@litegraph-ts/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
       vite-plugin-checker:
         specifier: ^0.5.6
-        version: 0.5.6(typescript@5.0.3)(vite@4.2.1)
+        version: 0.5.6(eslint@8.55.0)(optionator@0.9.3)(typescript@5.0.3)(vite@4.2.1(@types/node@18.15.11))
 
   bundles/mini:
     dependencies:
@@ -120,14 +120,14 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1
+        version: 4.2.1(@types/node@18.15.11)
     devDependencies:
       '@litegraph-ts/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
       vite-plugin-checker:
         specifier: ^0.5.6
-        version: 0.5.6(typescript@5.0.3)(vite@4.2.1)
+        version: 0.5.6(eslint@8.55.0)(optionator@0.9.3)(typescript@5.0.3)(vite@4.2.1(@types/node@18.15.11))
 
   packages/core:
     dependencies:
@@ -158,7 +158,7 @@ importers:
         version: 29.5.0
       eslint-plugin-jest:
         specifier: ^27.2.1
-        version: 27.2.1(@typescript-eslint/eslint-plugin@6.14.0(@typescript-eslint/parser@6.14.0(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3)
+        version: 27.2.1(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3)
       jest:
         specifier: ^29.5.0
         version: 29.5.0(@types/node@18.15.11)
@@ -236,7 +236,7 @@ importers:
         version: 5.0.3
       vite:
         specifier: ^4.2.1
-        version: 4.2.1
+        version: 4.2.1(@types/node@18.15.11)
 
   packages/nodes-logic:
     dependencies:
@@ -4907,12 +4907,11 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@27.2.1(@typescript-eslint/eslint-plugin@6.14.0(@typescript-eslint/parser@6.14.0(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3):
+  eslint-plugin-jest@27.2.1(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3):
     dependencies:
       '@typescript-eslint/utils': 5.57.1(eslint@8.55.0)(typescript@5.0.3)
       eslint: 8.55.0
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 6.14.0(@typescript-eslint/parser@6.14.0(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(typescript@5.0.3)
       jest: 29.5.0(@types/node@18.15.11)
     transitivePeerDependencies:
       - supports-color
