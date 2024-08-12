@@ -221,13 +221,14 @@ export default class LGraphNode {
   /** if true, the node will show the bgcolor as 'red'  */
   has_errors?: boolean;
 
-  _collapsed_width?: number;
-  exec_version: number = 0;
-  action_call: string | null = null;
-  /** the nFrames it will be used (-- each step), means "how old" is the event */
-  execute_triggered: number = 0;
-  /** the nFrames it will be used (-- each step), means "how old" is the event */
-  action_triggered: number = 0;
+    _collapsed_width?: number;
+    exec_version: number = 0;
+    action_call: string | null = null;
+    /** the nFrames it will be used (-- each step), means "how old" is the event */
+    execute_triggered: number = 0;
+    /** the nFrames it will be used (-- each step), means "how old" is the event */
+    action_triggered: number = 0;
+    no_panel_on_double_click: boolean = false;
 
   onNodeCreated?(): void;
 
@@ -2941,11 +2942,11 @@ export default class LGraphNode {
     graphCanvas: LGraphCanvas
   ): void;
 
-  onDblClick?(
-    event: MouseEventExt,
-    pos: Vector2,
-    graphCanvas: LGraphCanvas
-  ): void;
+    onDblClick?(
+        event: MouseEventExt,
+        pos: Vector2,
+        graphCanvas: LGraphCanvas
+    ): boolean;
 
   onKey?(event: KeyboardEvent, pos: Vector2, graphCanvas: LGraphCanvas): void;
   onKeyDown?(event: KeyboardEvent): void;

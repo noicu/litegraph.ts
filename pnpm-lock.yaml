@@ -73,6 +73,62 @@ importers:
         specifier: ^0.5.6
         version: 0.5.6(eslint@8.55.0)(optionator@0.9.3)(typescript@5.0.3)(vite@4.2.1(@types/node@18.15.11))
 
+  bundles/full:
+    dependencies:
+      '@litegraph-ts/mini':
+        specifier: workspace:*
+        version: link:../mini
+      '@litegraph-ts/nodes-interface':
+        specifier: workspace:*
+        version: link:../../packages/nodes-interface
+      typescript:
+        specifier: ^5.0.3
+        version: 5.0.3
+      vite:
+        specifier: ^4.2.1
+        version: 4.2.1
+    devDependencies:
+      '@litegraph-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      vite-plugin-checker:
+        specifier: ^0.5.6
+        version: 0.5.6(typescript@5.0.3)(vite@4.2.1)
+
+  bundles/mini:
+    dependencies:
+      '@litegraph-ts/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@litegraph-ts/nodes-basic':
+        specifier: workspace:*
+        version: link:../../packages/nodes-basic
+      '@litegraph-ts/nodes-events':
+        specifier: workspace:*
+        version: link:../../packages/nodes-events
+      '@litegraph-ts/nodes-logic':
+        specifier: workspace:*
+        version: link:../../packages/nodes-logic
+      '@litegraph-ts/nodes-math':
+        specifier: workspace:*
+        version: link:../../packages/nodes-math
+      '@litegraph-ts/nodes-strings':
+        specifier: workspace:*
+        version: link:../../packages/nodes-strings
+      typescript:
+        specifier: ^5.0.3
+        version: 5.0.3
+      vite:
+        specifier: ^4.2.1
+        version: 4.2.1
+    devDependencies:
+      '@litegraph-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      vite-plugin-checker:
+        specifier: ^0.5.6
+        version: 0.5.6(typescript@5.0.3)(vite@4.2.1)
+
   packages/core:
     dependencies:
       '@antfu/eslint-config':
@@ -165,6 +221,22 @@ importers:
       vite:
         specifier: ^4.2.1
         version: 4.2.1(@types/node@18.15.11)
+
+  packages/nodes-interface:
+    dependencies:
+      '@litegraph-ts/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@litegraph-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      typescript:
+        specifier: ^5.0.3
+        version: 5.0.3
+      vite:
+        specifier: ^4.2.1
+        version: 4.2.1
 
   packages/nodes-logic:
     dependencies:
