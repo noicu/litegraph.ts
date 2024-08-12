@@ -646,31 +646,41 @@ export default class LGraphCanvas_Rendering {
       ctx.save();
       this.ds.toCanvasContext(ctx);
 
-      //render BG
-      if (
-        this.background_image &&
-        this.ds.scale > 0.5 &&
-        !bg_already_painted
-      ) {
-        if (this.zoom_modify_alpha) {
-          ctx.globalAlpha =
-            (1.0 - 0.5 / this.ds.scale) * this.editor_alpha;
-        } else {
-          ctx.globalAlpha = this.editor_alpha;
-        }
-        ctx.imageSmoothingEnabled = ctx.imageSmoothingEnabled = false; // ctx.mozImageSmoothingEnabled =
-        if (
-          !this._bg_img ||
-          this._bg_img.name != this.background_image
-        ) {
-          this._bg_img = new Image();
-          this._bg_img.name = this.background_image;
-          this._bg_img.src = this.background_image;
-          var that = this;
-          this._bg_img.onload = () => {
-            this.draw(true, true);
-          };
-        }
+            //render BG
+            if (this.ds.scale < 1.5 && !bg_already_painted && this.clear_background_color) {
+                ctx.fillStyle = this.clear_background_color;
+                ctx.fillRect(
+                    this.visible_area[0],
+                    this.visible_area[1],
+                    this.visible_area[2],
+                    this.visible_area[3]
+                );
+            }
+
+            if (
+                this.background_image &&
+                this.ds.scale > 0.5 &&
+                !bg_already_painted
+            ) {
+                if (this.zoom_modify_alpha) {
+                    ctx.globalAlpha =
+                        (1.0 - 0.5 / this.ds.scale) * this.editor_alpha;
+                } else {
+                    ctx.globalAlpha = this.editor_alpha;
+                }
+                ctx.imageSmoothingEnabled = ctx.imageSmoothingEnabled = false; // ctx.mozImageSmoothingEnabled =
+                if (
+                    !this._bg_img ||
+                    this._bg_img.name != this.background_image
+                ) {
+                    this._bg_img = new Image();
+                    this._bg_img.name = this.background_image;
+                    this._bg_img.src = this.background_image;
+                    var that = this;
+                    this._bg_img.onload = () => {
+                        this.draw(true, true);
+                    };
+                }
 
         var pattern = null;
         if (this._pattern == null && this._bg_img.width > 0) {

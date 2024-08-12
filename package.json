@@ -1,10 +1,8 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
-  "scripts": {
-    "dev": "cd ./apps/editor && npm run dev"
-  }
+    "private": true,
+    "workspaces": ["packages/*", "apps/*"],
+    "scripts": {
+      "dev": "cd ./apps/editor && npm run dev",
+      "build": "bash build.sh"
+    }
 }

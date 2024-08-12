@@ -1288,35 +1288,39 @@ export default class LGraphNode {
       this.onResize(this.size);
   }
 
-  /**
-   * add a new property to this node
-   * @param name
-   * @param default_value
-   * @param type string defining the output type ("vec3","number",...)
-   * @param extra_info this can be used to have special properties of the property (like values, etc)
-   */
-  addProperty(
-    name: string,
-    default_value: any,
-    type?: string,
-    extra_info?: Partial<IPropertyInfo>
-  ): IProperty {
-    var o: IProperty = { name: name, type: type, default_value: default_value };
-    if (extra_info) {
-      for (var i in extra_info) {
-        o[i] = extra_info[i];
-      }
+    /**
+     * add a new property to this node
+     * @param name
+     * @param default_value
+     * @param type string defining the output type ("vec3","number",...)
+     * @param extra_info this can be used to have special properties of the property (like values, etc)
+     */
+    addProperty(
+        name: string,
+        default_value: any,
+        type?: string,
+        extra_info?: Partial<IPropertyInfo>
+    ): IProperty {
+        var o: IProperty = { name: name, type: type, default_value: default_value };
+        if (extra_info) {
+            for (var i in extra_info) {
+                o[i] = extra_info[i];
+            }
+        }
+        if (!this.properties_info) {
+            this.properties_info = [];
+        }
+        this.properties_info.push(o);
+        if (!this.properties) {
+            this.properties = {};
+        }
+        this.properties[name] = default_value;
+        return o;
     }
-    if (!this.properties_info) {
-      this.properties_info = [];
+
+    hasProperty(name: string): boolean {
+        return this.properties != null && name in this.properties;
     }
-    this.properties_info.push(o);
-    if (!this.properties) {
-      this.properties = {};
-    }
-    this.properties[name] = default_value;
-    return o;
-  }
 
   /**
    * add a new output slot to use in this node
@@ -1839,10 +1843,30 @@ export default class LGraphNode {
     return null;
   }
 
-  is<T extends LGraphNode>(ctor: new () => T): this is T {
-    const lgType: string | null = (ctor as any).__LITEGRAPH_TYPE__
-    return lgType != null && this.type === lgType;
-  }
+    is<T extends LGraphNode>(ctor: new () => T): this is T {
+        const lgType: string | null = (ctor as any).__LITEGRAPH_TYPE__
+        return lgType != null && this.type === lgType;
+    }
+
+    /**
+     * returns the input slot with a given name (used for dynamic slots), -1 if not found
+     * for compatibility purposes only, please prefer `findInputSlotIndexByName`
+     * @param name the name of the slot
+     * @return the slot (-1 if not found)
+     */
+    findInputSlot(name: string): number {
+        return this.findInputSlotIndexByName(name);
+    }
+
+    /**
+     * returns the output slot with a given name (used for dynamic slots), -1 if not found
+     * for compatibility purposes only, please prefer `findOutputSlotIndexByName`
+     * @param name the name of the slot
+     * @return  the slot (-1 if not found)
+     */
+    findOutputSlot(name: string): number {
+        return this.findOutputSlotIndexByName(name);
+    }
 
   /**
    * returns the input slot with a given name (used for dynamic slots), -1 if not found

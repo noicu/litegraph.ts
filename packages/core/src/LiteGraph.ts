@@ -1,3 +1,4 @@
+import ContextMenu from "./ContextMenu";
 import type LGraph from "./LGraph";
 import type { LGraphNodeConstructor, LGraphNodeConstructorFactory, NodeTypeSpec, PropertyLayout, SearchboxExtra, SerializedLGraphNode, SlotLayout } from "./LGraphNode";
 import { default as LGraphNode } from "./LGraphNode";
@@ -150,6 +151,8 @@ export default class LiteGraph {
     // if true, save a _data entry in serialized node outputs for debugging
     static serialize_slot_data: boolean = false;
 
+    static onContextMenuCreated?(contextMenu: ContextMenu): void;
+
     /** Register a node class so it can be listed when the user wants to create a new one */
     static registerNodeType<T extends LGraphNode>(config: LGraphNodeConstructor): void {
         if (LiteGraph.debug) {
@@ -160,7 +163,8 @@ export default class LiteGraph {
         const type = config.type;
 
         if (!type) {
-            throw ("Config has no type: " + config);
+            console.error(config)
+            throw new Error("Config has no type: " + config);
         }
         if (LiteGraph.debug) {
             console.debug(classname, type)
@@ -256,7 +260,7 @@ export default class LiteGraph {
         }
 
         if (!regConfig) {
-            throw "Node not registered!" + type
+            throw new Error("Node not registered!" + type)
         }
 
         var sCN = (regConfig.class as any).__litegraph_type__;

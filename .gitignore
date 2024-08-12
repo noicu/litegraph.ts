@@ -11,4 +11,6 @@ coverage/
 .turbo/
 dist/
 /packages/tsconfig/build/
+/out/
+**/dist/
 .DS_Store
