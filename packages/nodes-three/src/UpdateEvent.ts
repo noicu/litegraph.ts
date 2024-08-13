@@ -14,6 +14,8 @@ export default class UpdateEvent extends LGraphNode {
     ],
   }
 
+  override size: [number, number] = [300, 300];
+
   override onDrawForeground(ctx: CanvasRenderingContext2D) {
 
   }

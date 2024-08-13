@@ -123,37 +123,12 @@ export default class LGraphNode {
   static type: null | string;
   static widgets_up: boolean;
 
-  constructor(title?: string) {
-    this.title = title || "Unnamed"
-    this.size = [LiteGraph.NODE_WIDTH, 60];
-    this.graph = null;
-
-    this.pos = [10, 10];
-
-    if (LiteGraph.use_uuids)
-      this.id = uuidv4();
-    else
-      this.id = -1; //not know till not added
-    this.type = null;
-
-    //inputs available: array of inputs
-    this.inputs = [];
-    this.outputs = [];
-    this.connections = [];
-
-    //local data
-    this.properties = {}; //for the values
-    this.properties_info = []; //for the info
-
-    this.flags = {};
-  }
-
   title: string;
   desc: string = "";
   type: null | string;
   category: null | string;
   size: Vector2;
-  pos: Vector2 = [0, 0]
+  pos: Vector2 = [0, 0];
   graph: null | LGraph;
   graph_version: number;
   subgraph: null | LGraph = null;
@@ -221,14 +196,39 @@ export default class LGraphNode {
   /** if true, the node will show the bgcolor as 'red'  */
   has_errors?: boolean;
 
-    _collapsed_width?: number;
-    exec_version: number = 0;
-    action_call: string | null = null;
-    /** the nFrames it will be used (-- each step), means "how old" is the event */
-    execute_triggered: number = 0;
-    /** the nFrames it will be used (-- each step), means "how old" is the event */
-    action_triggered: number = 0;
-    no_panel_on_double_click: boolean = false;
+  _collapsed_width?: number;
+  exec_version: number = 0;
+  action_call: string | null = null;
+  /** the nFrames it will be used (-- each step), means "how old" is the event */
+  execute_triggered: number = 0;
+  /** the nFrames it will be used (-- each step), means "how old" is the event */
+  action_triggered: number = 0;
+  no_panel_on_double_click: boolean = false;
+
+  constructor(title?: string) {
+    this.title = title || "Unnamed"
+    this.size = this.size || [LiteGraph.NODE_WIDTH, 60];
+    this.graph = null;
+
+    this.pos = [10, 10];
+
+    if (LiteGraph.use_uuids)
+      this.id = uuidv4();
+    else
+      this.id = -1; //not know till not added
+    this.type = null;
+
+    //inputs available: array of inputs
+    this.inputs = [];
+    this.outputs = [];
+    this.connections = [];
+
+    //local data
+    this.properties = {}; //for the values
+    this.properties_info = []; //for the info
+
+    this.flags = {};
+  }
 
   onNodeCreated?(): void;
 
@@ -1289,39 +1289,39 @@ export default class LGraphNode {
       this.onResize(this.size);
   }
 
-    /**
-     * add a new property to this node
-     * @param name
-     * @param default_value
-     * @param type string defining the output type ("vec3","number",...)
-     * @param extra_info this can be used to have special properties of the property (like values, etc)
-     */
-    addProperty(
-        name: string,
-        default_value: any,
-        type?: string,
-        extra_info?: Partial<IPropertyInfo>
-    ): IProperty {
-        var o: IProperty = { name: name, type: type, default_value: default_value };
-        if (extra_info) {
-            for (var i in extra_info) {
-                o[i] = extra_info[i];
-            }
-        }
-        if (!this.properties_info) {
-            this.properties_info = [];
-        }
-        this.properties_info.push(o);
-        if (!this.properties) {
-            this.properties = {};
-        }
-        this.properties[name] = default_value;
-        return o;
+  /**
+   * add a new property to this node
+   * @param name
+   * @param default_value
+   * @param type string defining the output type ("vec3","number",...)
+   * @param extra_info this can be used to have special properties of the property (like values, etc)
+   */
+  addProperty(
+    name: string,
+    default_value: any,
+    type?: string,
+    extra_info?: Partial<IPropertyInfo>
+  ): IProperty {
+    var o: IProperty = { name: name, type: type, default_value: default_value };
+    if (extra_info) {
+      for (var i in extra_info) {
+        o[i] = extra_info[i];
+      }
     }
+    if (!this.properties_info) {
+      this.properties_info = [];
+    }
+    this.properties_info.push(o);
+    if (!this.properties) {
+      this.properties = {};
+    }
+    this.properties[name] = default_value;
+    return o;
+  }
 
-    hasProperty(name: string): boolean {
-        return this.properties != null && name in this.properties;
-    }
+  hasProperty(name: string): boolean {
+    return this.properties != null && name in this.properties;
+  }
 
   /**
    * add a new output slot to use in this node
@@ -1844,30 +1844,30 @@ export default class LGraphNode {
     return null;
   }
 
-    is<T extends LGraphNode>(ctor: new () => T): this is T {
-        const lgType: string | null = (ctor as any).__LITEGRAPH_TYPE__
-        return lgType != null && this.type === lgType;
-    }
+  is<T extends LGraphNode>(ctor: new () => T): this is T {
+    const lgType: string | null = (ctor as any).__LITEGRAPH_TYPE__
+    return lgType != null && this.type === lgType;
+  }
 
-    /**
-     * returns the input slot with a given name (used for dynamic slots), -1 if not found
-     * for compatibility purposes only, please prefer `findInputSlotIndexByName`
-     * @param name the name of the slot
-     * @return the slot (-1 if not found)
-     */
-    findInputSlot(name: string): number {
-        return this.findInputSlotIndexByName(name);
-    }
+  /**
+   * returns the input slot with a given name (used for dynamic slots), -1 if not found
+   * for compatibility purposes only, please prefer `findInputSlotIndexByName`
+   * @param name the name of the slot
+   * @return the slot (-1 if not found)
+   */
+  findInputSlot(name: string): number {
+    return this.findInputSlotIndexByName(name);
+  }
 
-    /**
-     * returns the output slot with a given name (used for dynamic slots), -1 if not found
-     * for compatibility purposes only, please prefer `findOutputSlotIndexByName`
-     * @param name the name of the slot
-     * @return  the slot (-1 if not found)
-     */
-    findOutputSlot(name: string): number {
-        return this.findOutputSlotIndexByName(name);
-    }
+  /**
+   * returns the output slot with a given name (used for dynamic slots), -1 if not found
+   * for compatibility purposes only, please prefer `findOutputSlotIndexByName`
+   * @param name the name of the slot
+   * @return  the slot (-1 if not found)
+   */
+  findOutputSlot(name: string): number {
+    return this.findOutputSlotIndexByName(name);
+  }
 
   /**
    * returns the input slot with a given name (used for dynamic slots), -1 if not found
@@ -2942,11 +2942,11 @@ export default class LGraphNode {
     graphCanvas: LGraphCanvas
   ): void;
 
-    onDblClick?(
-        event: MouseEventExt,
-        pos: Vector2,
-        graphCanvas: LGraphCanvas
-    ): boolean;
+  onDblClick?(
+    event: MouseEventExt,
+    pos: Vector2,
+    graphCanvas: LGraphCanvas
+  ): boolean;
 
   onKey?(event: KeyboardEvent, pos: Vector2, graphCanvas: LGraphCanvas): void;
   onKeyDown?(event: KeyboardEvent): void;
