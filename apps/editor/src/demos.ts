@@ -21,7 +21,6 @@ export function demo(editor: Editor) {
     editor.graph.configure(JSON.parse(data));
     editor.graph.start();
 
-
     function ue_on_tick() {
       const ues = editor.graph.findNodesByClass(UpdateEvent)
       ues.forEach(ue => {

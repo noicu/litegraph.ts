@@ -10,11 +10,13 @@
     "@litegraph-ts/nodes-test": "workspace:*",
     "@litegraph-ts/nodes-three": "workspace:*",
     "@litegraph-ts/nodes-widget": "workspace:*",
+    "three": "^0.167.1",
     "typescript": "^5.0.3",
     "vite": "^4.2.1"
   },
   "devDependencies": {
     "@litegraph-ts/tsconfig": "workspace:*",
+    "@types/three": "^0.167.1",
     "vite-plugin-checker": "^0.5.6"
   },
   "name": "@litegraph-ts/editor",

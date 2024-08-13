@@ -1,11 +1,13 @@
 {
   "dependencies": {
-    "@litegraph-ts/core": "workspace:*"
+    "@litegraph-ts/core": "workspace:*",
+    "three": "^0.167.1"
   },
   "description": "",
   "devDependencies": {
     "@antfu/eslint-config": "^2.4.5",
     "@litegraph-ts/tsconfig": "workspace:*",
+    "@types/three": "^0.167.1",
     "eslint": "^8.55.0",
     "eslint-plugin-format": "^0.1.0",
     "typescript": "^5.0.3",
