@@ -862,6 +862,10 @@ export default class LGraph {
             this.onNodeAdded(node, options);
         }
 
+        if(node.onAddedToGraph){
+            node.onAddedToGraph(this);
+        }
+
         this.setDirtyCanvas(true);
         this.change();
 

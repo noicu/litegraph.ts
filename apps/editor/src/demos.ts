@@ -1,7 +1,7 @@
 import "@litegraph-ts/nodes-math"
 import { LGraph, LGraphStatus, LiteGraph } from "@litegraph-ts/core";
-import { ConstantNumber, Watch, ConstantString, ConstantJSON } from "@litegraph-ts/nodes-basic"
-// import { MathOperation } from "@litegraph-ts/nodes-math"
+import "@litegraph-ts/nodes-basic"
+import "@litegraph-ts/nodes-math"
 import "@litegraph-ts/nodes-logic";
 import "@litegraph-ts/nodes-widget";
 import "@litegraph-ts/nodes-events";

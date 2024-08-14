@@ -2979,6 +2979,12 @@ export default class LGraphNode {
   onAdded?(graph: LGraph): void;
 
   /**
+   * 添加后调用 在 graph.onNodeAdded 之后
+   * Called by `LGraph.add`
+   */
+  onAddedToGraph?(graph: LGraph): void;
+
+  /**
    * when removed from graph
    * Called by `LGraph.remove` `LGraph.clear`
    */
