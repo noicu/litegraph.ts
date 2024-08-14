@@ -82,6 +82,58 @@ importers:
         specifier: ^0.5.6
         version: 0.5.6(eslint@8.55.0)(optionator@0.9.3)(typescript@5.0.3)(vite@4.2.1(@types/node@18.15.11))
 
+  apps/shader-editor:
+    dependencies:
+      '@litegraph-ts/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@litegraph-ts/nodes-basic':
+        specifier: workspace:*
+        version: link:../../packages/nodes-basic
+      '@litegraph-ts/nodes-events':
+        specifier: workspace:*
+        version: link:../../packages/nodes-events
+      '@litegraph-ts/nodes-interface':
+        specifier: workspace:*
+        version: link:../../packages/nodes-interface
+      '@litegraph-ts/nodes-logic':
+        specifier: workspace:*
+        version: link:../../packages/nodes-logic
+      '@litegraph-ts/nodes-math':
+        specifier: workspace:*
+        version: link:../../packages/nodes-math
+      '@litegraph-ts/nodes-mqtt':
+        specifier: workspace:*
+        version: link:../../packages/nodes-mqtt
+      '@litegraph-ts/nodes-test':
+        specifier: workspace:*
+        version: link:../../packages/nodes-test
+      '@litegraph-ts/nodes-three':
+        specifier: workspace:*
+        version: link:../../packages/nodes-three
+      '@litegraph-ts/nodes-widget':
+        specifier: workspace:*
+        version: link:../../packages/nodes-widget
+      three:
+        specifier: ^0.167.1
+        version: 0.167.1
+      typescript:
+        specifier: ^5.0.3
+        version: 5.0.3
+      vite:
+        specifier: ^4.2.1
+        version: 4.2.1(@types/node@18.15.11)
+    devDependencies:
+      '@litegraph-ts/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      '@types/three':
+        specifier: ^0.167.1
+        version: 0.167.1
+      vite-plugin-checker:
+        specifier: ^0.5.6
+        version: 0.5.6(eslint@8.55.0)(optionator@0.9.3)(typescript@5.0.3)(vite@4.2.1(@types/node@18.15.11))
+
   bundles/full:
     dependencies:
       '@litegraph-ts/mini':
@@ -167,7 +219,7 @@ importers:
         version: 29.5.0
       eslint-plugin-jest:
         specifier: ^27.2.1
-        version: 27.2.1(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3)
+        version: 27.2.1(@typescript-eslint/eslint-plugin@6.14.0(@typescript-eslint/parser@6.14.0(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3)
       jest:
         specifier: ^29.5.0
         version: 29.5.0(@types/node@18.15.11)
@@ -4964,11 +5016,12 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@27.2.1(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3):
+  eslint-plugin-jest@27.2.1(@typescript-eslint/eslint-plugin@6.14.0(@typescript-eslint/parser@6.14.0(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(jest@29.5.0(@types/node@18.15.11))(typescript@5.0.3):
     dependencies:
       '@typescript-eslint/utils': 5.57.1(eslint@8.55.0)(typescript@5.0.3)
       eslint: 8.55.0
     optionalDependencies:
+      '@typescript-eslint/eslint-plugin': 6.14.0(@typescript-eslint/parser@6.14.0(eslint@8.55.0)(typescript@5.0.3))(eslint@8.55.0)(typescript@5.0.3)
       jest: 29.5.0(@types/node@18.15.11)
     transitivePeerDependencies:
       - supports-color

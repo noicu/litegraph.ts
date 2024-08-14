@@ -3,6 +3,7 @@
     "workspaces": ["packages/*", "apps/*", "bundles/*"],
     "scripts": {
       "dev": "cd ./apps/editor && npm run dev",
+      "dev:shader": "cd ./apps/shader-editor && npm run dev",
       "build": "bash build.sh"
     }
 }

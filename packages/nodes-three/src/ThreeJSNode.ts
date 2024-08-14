@@ -8,50 +8,27 @@ import {
 import * as THREE from "three";
 
 const vertexShader = `
-varying vec2 vUv;
+attribute vec2 aUV_1; // 从顶点数据接收的 UV 坐标
+varying vec2 vUv_0;   // 传递给片元着色器的 UV 坐标
 
-void main()	{
-
-  vUv = uv;
-
-  gl_Position = vec4( position, 1.0 );
-
+void main() {
+    vUv_0 = uv; // 将 UV 坐标传递给片元着色器
+    // 通常需要计算和传递顶点位置
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
 }
+
 `
 const fragmentShader = `
-varying vec2 vUv;
+precision mediump float;
 
-uniform float time;
+varying vec2 vUv_0; // 从顶点着色器传递的 UV 坐标
 
-void main()	{
-
-  vec2 p = - 1.0 + 2.0 * vUv;
-  float a = time * 40.0;
-  float d, e, f, g = 1.0 / 40.0 ,h ,i ,r ,q;
-
-  e = 400.0 * ( p.x * 0.5 + 0.5 );
-  f = 400.0 * ( p.y * 0.5 + 0.5 );
-  i = 200.0 + sin( e * g + a / 150.0 ) * 20.0;
-  d = 200.0 + cos( f * g / 2.0 ) * 18.0 + cos( e * g ) * 7.0;
-  r = sqrt( pow( abs( i - e ), 2.0 ) + pow( abs( d - f ), 2.0 ) );
-  q = f / r;
-  e = ( r * cos( q ) ) - a / 2.0;
-  f = ( r * sin( q ) ) - a / 2.0;
-  d = sin( e * g ) * 176.0 + sin( e * g ) * 164.0 + r;
-  h = ( ( f + d ) + a / 2.0 ) * g;
-  i = cos( h + r * p.x / 1.3 ) * ( e + e + a ) + cos( q * g * 6.0 ) * ( r + h / 3.0 );
-  h = sin( f * g ) * 144.0 - sin( e * g ) * 212.0 * p.x;
-  h = ( h + ( f - e ) * q + sin( r - ( a + h ) / 7.0 ) * 10.0 + i / 4.0 ) * g;
-  i += cos( h * 2.3 * sin( a / 350.0 - q ) ) * 184.0 * sin( q - ( r * 4.3 + a / 12.0 ) * g ) + tan( r * g + h ) * 184.0 * cos( r * g + h );
-  i = mod( i / 5.6, 256.0 ) / 64.0;
-  if ( i < 0.0 ) i += 4.0;
-  if ( i >= 2.0 ) i = 4.0 - i;
-  d = r / 350.0;
-  d += sin( d * d * 8.0 ) * 0.52;
-  f = ( sin( a * g ) + 1.0 ) / 2.0;
-  gl_FragColor = vec4( vec3( f * i / 1.6, i / 2.0 + d / 13.0, i ) * d * p.x + vec3( i / 1.3 + d / 8.0, i / 2.0 + d / 18.0, i ) * d * ( 1.0 - p.x ), 1.0 );
-
+void main() {
+    // 直接使用 UV 坐标作为颜色值
+    vec3 color = vec3(vUv_0, 0); // R 分量为 u，G 分量为 v，B 分量为 0
+    gl_FragColor = vec4(color, 1.0); // 输出最终颜色
 }
+
 `
 
 
@@ -62,16 +39,8 @@ export default class ThreeJSNode extends LGraphNode {
     ],
   }
 
-  canvas: HTMLCanvasElement;
-
-  context: WebGLRenderingContext;
-
   scene: THREE.Scene;
-
   camera: THREE.OrthographicCamera;
-
-  renderer: THREE.WebGLRenderer;
-
   mesh: THREE.Mesh;
 
   uniforms = {
@@ -86,39 +55,19 @@ export default class ThreeJSNode extends LGraphNode {
   override size: [number, number] = [300, 300];
 
   constructor(title?: string) {
-
     super(title);
 
-    this.canvas = document.createElement("canvas");
-    this.canvas.width = this.size[0];
-    this.canvas.height = this.size[1];
-    this.context = this.canvas.getContext("webgl2")!;
-    this.properties = {};
-
-    // Set up Three.js scene
     this.scene = new THREE.Scene();
     this.camera = new THREE.OrthographicCamera(- 1, 1, 1, - 1, 0, 1);
-
-    this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvas,
-    });
-
-    this.renderer.setSize(this.size[0], this.size[1]);
-
-
-    // Add a cube to the scene
     const geometry = new THREE.PlaneGeometry(2, 2);
     const material = new THREE.ShaderMaterial({
-      uniforms: this.uniforms,
+      // uniforms: this.uniforms,
       vertexShader,
       fragmentShader
     });
 
-    this.mesh = new THREE.Mesh( geometry, material );
-
+    this.mesh = new THREE.Mesh(geometry, material);
     this.scene.add(this.mesh);
-
-		this.renderer.setPixelRatio( window.devicePixelRatio );
 
     this.addCustomWidget({
       name: '',
@@ -131,22 +80,24 @@ export default class ThreeJSNode extends LGraphNode {
         height: number
       ) => {
         const size = Math.min(...this.size)
-        ctx.drawImage(this.canvas, 0, 0, size, size);
+        ctx.drawImage(this.graph.extra['canvas'], 0, 0, 300, 300, 0, 0, size, size);
+      },
+      mouse(event) {
+        console.log('mouse', event.type)
+        return true
       },
       computeSize: (width) => {
-
-        this.renderer.setSize(width, width - 36);
+        // this.renderer.setSize(width, width - 36);
         return [width, width - 36]
       }
     })
   }
 
   override onExecute() {
-    // Rotate the cube for some animation
-    this.uniforms[ 'time' ].value = this.getRootGraph().getFixedTime();
+    this.uniforms['time'].value = this.getRootGraph().getFixedTime();
 
     // 渲染场景
-    this.renderer.render(this.scene, this.camera);
+    this.graph.extra['renderer'].render(this.scene, this.camera);
   };
 }
 
@@ -156,3 +107,32 @@ LiteGraph.registerNodeType({
   desc: "ThreeJS Node",
   type: "three/threejs"
 })
+
+
+// // 裁剪区域的坐标和尺寸
+// var x = 100, y = 100, width = 20, height = 20;
+
+// ctx.drawImage
+
+// // 创建一个数组来保存读取的像素数据
+// var pixels = new Uint8Array(width * height * 4);
+
+// // 从 WebGL2 Canvas 中读取像素数据
+// this.context.readPixels(x, y, width, height, this.context.RGBA, this.context.UNSIGNED_BYTE, pixels);
+
+// var imageData = ctx.createImageData(width, height);
+
+// // WebGL 坐标系和 Canvas 坐标系的 Y 轴是反转的，因此需要翻转像素数据
+// for (var row = 0; row < height; row++) {
+//   for (var col = 0; col < width; col++) {
+//       var sourceIndex = ((height - 1 - row) * width + col) * 4;
+//       var destIndex = (row * width + col) * 4;
+//       imageData.data[destIndex] = pixels[sourceIndex];
+//       imageData.data[destIndex + 1] = pixels[sourceIndex + 1];
+//       imageData.data[destIndex + 2] = pixels[sourceIndex + 2];
+//       imageData.data[destIndex + 3] = pixels[sourceIndex + 3];
+//   }
+// }
+
+// // 将 ImageData 绘制到新的 Canvas 上
+// ctx.putImageData(imageData, 0, 0);

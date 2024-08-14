@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@litegraph-ts/core": "workspace:*",
+    "@litegraph-ts/nodes-basic": "workspace:*",
+    "@litegraph-ts/nodes-events": "workspace:*",
+    "@litegraph-ts/nodes-interface": "workspace:*",
+    "@litegraph-ts/nodes-logic": "workspace:*",
+    "@litegraph-ts/nodes-math": "workspace:*",
+    "@litegraph-ts/nodes-mqtt": "workspace:*",
+    "@litegraph-ts/nodes-test": "workspace:*",
+    "@litegraph-ts/nodes-three": "workspace:*",
+    "@litegraph-ts/nodes-widget": "workspace:*",
+    "three": "^0.167.1",
+    "typescript": "^5.0.3",
+    "vite": "^4.2.1"
+  },
+  "devDependencies": {
+    "@litegraph-ts/tsconfig": "workspace:*",
+    "@types/three": "^0.167.1",
+    "vite-plugin-checker": "^0.5.6"
+  },
+  "name": "@litegraph-ts/shader-editor",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite"
+  },
+  "version": "0.0.1"
+}
